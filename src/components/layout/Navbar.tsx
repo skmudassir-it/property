@@ -21,7 +21,7 @@ export function Navbar() {
   const navLinks = [
     { name: 'The Property', href: '#property' },
     { name: 'Gallery', href: '#gallery' },
-    { name: 'Lifestyle', href: '#contact' },
+    { name: 'Locate', href: '#location' },
   ];
 
   return (
