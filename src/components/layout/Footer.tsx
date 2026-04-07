@@ -36,7 +36,7 @@ export function Footer() {
             <div className="text-white/60 font-sans text-sm space-y-2">
               <p>1 (800) 555-0199</p>
               <p>inquiries@auraestate.com</p>
-              <p>Beverly Hills, California</p>
+              <p>Buckhead, Atlanta, Georgia</p>
             </div>
           </div>
           
