@@ -45,86 +45,103 @@ export function Contact() {
             </p>
           </motion.div>
         ) : (
-          <>
-            <iframe name="hidden_iframe" id="hidden_iframe" style={{ display: 'none' }}></iframe>
-            <motion.form 
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-50px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6"
-              action="https://docs.google.com/forms/d/e/1FAIpQLSc6jXpnuMVlgXFeioaXdpamXADZAB8-ClaxHXoYRNb0-udQIQ/formResponse"
-              method="POST"
-              target="hidden_iframe"
-              onSubmit={() => setIsSubmitted(true)}
-            >
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label htmlFor="firstName" className="text-xs uppercase tracking-widest text-white/50 block">First Name</label>
-                  <input 
-                    id="firstName" 
-                    name="entry.2086098915"
-                    type="text" 
-                    required
-                    className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
-                    placeholder="James"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="lastName" className="text-xs uppercase tracking-widest text-white/50 block">Last Name</label>
-                  <input 
-                    id="lastName" 
-                    name="entry.39569701"
-                    type="text" 
-                    required
-                    className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
-                    placeholder="Bond"
-                  />
-                </div>
-              </div>
+          <motion.form 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="space-y-6"
+            onSubmit={(e) => {
+              e.preventDefault();
+              const form = e.currentTarget;
+              const formData = new FormData(form);
               
+              const searchParams = new URLSearchParams();
+              formData.forEach((value, key) => {
+                searchParams.append(key, value.toString());
+              });
+              
+              fetch("https://docs.google.com/forms/d/e/1FAIpQLSc6jXpnuMVlgXFeioaXdpamXADZAB8-ClaxHXoYRNb0-udQIQ/formResponse", {
+                method: "POST",
+                body: searchParams,
+                mode: "no-cors",
+                headers: {
+                  'Content-Type': 'application/x-www-form-urlencoded',
+                }
+              }).then(() => {
+                setIsSubmitted(true);
+              }).catch((err) => {
+                console.error(err);
+                setIsSubmitted(true);
+              });
+            }}
+          >
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="space-y-2">
-                <label htmlFor="email" className="text-xs uppercase tracking-widest text-white/50 block">Email Address</label>
+                <label htmlFor="firstName" className="text-xs uppercase tracking-widest text-white/50 block">First Name</label>
                 <input 
-                  id="email" 
-                  name="entry.249980255"
-                  type="email" 
+                  id="firstName" 
+                  name="entry.2086098915"
+                  type="text" 
                   required
                   className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
-                  placeholder="james@example.com"
+                  placeholder="James"
                 />
               </div>
-
               <div className="space-y-2">
-                <label htmlFor="phone" className="text-xs uppercase tracking-widest text-white/50 block">Phone Number</label>
+                <label htmlFor="lastName" className="text-xs uppercase tracking-widest text-white/50 block">Last Name</label>
                 <input 
-                  id="phone" 
-                  name="entry.1299808886"
-                  type="tel" 
+                  id="lastName" 
+                  name="entry.39569701"
+                  type="text" 
                   required
                   className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
-                  placeholder="+1 (555) 000-0000"
+                  placeholder="Bond"
                 />
               </div>
+            </div>
+            
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-xs uppercase tracking-widest text-white/50 block">Email Address</label>
+              <input 
+                id="email" 
+                name="entry.249980255"
+                type="email" 
+                required
+                className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
+                placeholder="james@example.com"
+              />
+            </div>
 
-              <div className="space-y-2">
-                <label htmlFor="message" className="text-xs uppercase tracking-widest text-white/50 block">Message</label>
-                <textarea 
-                  id="message" 
-                  name="entry.413325460"
-                  rows={4}
-                  className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20 resize-none"
-                  placeholder="Tell us about your requirements..."
-                />
-              </div>
+            <div className="space-y-2">
+              <label htmlFor="phone" className="text-xs uppercase tracking-widest text-white/50 block">Phone Number</label>
+              <input 
+                id="phone" 
+                name="entry.1299808886"
+                type="tel" 
+                required
+                className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
+                placeholder="+1 (555) 000-0000"
+              />
+            </div>
 
-              <div className="pt-8 flex justify-center">
-                <Button type="submit" variant="gold" size="lg" className="w-full md:w-auto min-w-[240px]">
-                  Request Viewing
-                </Button>
-              </div>
-            </motion.form>
-          </>
+            <div className="space-y-2">
+              <label htmlFor="message" className="text-xs uppercase tracking-widest text-white/50 block">Message</label>
+              <textarea 
+                id="message" 
+                name="entry.413325460"
+                rows={4}
+                className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20 resize-none"
+                placeholder="Tell us about your requirements..."
+              />
+            </div>
+
+            <div className="pt-8 flex justify-center">
+              <Button type="submit" variant="gold" size="lg" className="w-full md:w-auto min-w-[240px]">
+                Request Viewing
+              </Button>
+            </div>
+          </motion.form>
         )}
       </div>
     </section>
