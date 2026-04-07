@@ -35,13 +35,16 @@ export function Contact() {
           viewport={{ once: true, margin: "-50px" }}
           transition={{ duration: 0.8, delay: 0.2 }}
           className="space-y-6"
-          onSubmit={(e) => e.preventDefault()}
+          action="https://docs.google.com/forms/d/e/1FAIpQLSc6jXpnuMVlgXFeioaXdpamXADZAB8-ClaxHXoYRNb0-udQIQ/formResponse"
+          method="POST"
+          target="_blank"
         >
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
             <div className="space-y-2">
               <label htmlFor="firstName" className="text-xs uppercase tracking-widest text-white/50 block">First Name</label>
               <input 
                 id="firstName" 
+                name="entry.2086098915"
                 type="text" 
                 className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
                 placeholder="James"
@@ -51,6 +54,7 @@ export function Contact() {
               <label htmlFor="lastName" className="text-xs uppercase tracking-widest text-white/50 block">Last Name</label>
               <input 
                 id="lastName" 
+                name="entry.39569701"
                 type="text" 
                 className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
                 placeholder="Bond"
@@ -62,6 +66,7 @@ export function Contact() {
             <label htmlFor="email" className="text-xs uppercase tracking-widest text-white/50 block">Email Address</label>
             <input 
               id="email" 
+              name="entry.249980255"
               type="email" 
               className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
               placeholder="james@example.com"
@@ -72,6 +77,7 @@ export function Contact() {
             <label htmlFor="phone" className="text-xs uppercase tracking-widest text-white/50 block">Phone Number</label>
             <input 
               id="phone" 
+              name="entry.1299808886"
               type="tel" 
               className="w-full bg-transparent border-b border-white/20 focus:border-gold px-0 py-3 text-white outline-none transition-colors font-sans placeholder-white/20"
               placeholder="+1 (555) 000-0000"
@@ -79,7 +85,7 @@ export function Contact() {
           </div>
 
           <div className="pt-8 flex justify-center">
-            <Button variant="gold" size="lg" className="w-full md:w-auto min-w-[240px]">
+            <Button type="submit" variant="gold" size="lg" className="w-full md:w-auto min-w-[240px]">
               Request Viewing
             </Button>
           </div>
