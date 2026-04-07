@@ -32,23 +32,24 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1], delay: 0.2 }}
         >
-          <p className="text-gold tracking-[0.3em] uppercase text-sm mb-6 font-medium">Bespoke Living</p>
+          <p className="text-gold tracking-[0.3em] uppercase text-sm mb-6 font-medium animate-pulse">Bespoke Living</p>
         </motion.div>
         
-        <motion.h1 
-          className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight tracking-wide"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+          animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1], delay: 0.4 }}
         >
-          The Pinnacle of <br className="hidden md:block"/> Modern Luxury
-        </motion.h1>
+          <h1 className="font-serif text-5xl md:text-7xl lg:text-8xl text-white mb-8 leading-tight tracking-wide drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]">
+            The Pinnacle of <br className="hidden md:block"/> Modern Luxury
+          </h1>
+        </motion.div>
         
         <motion.div
-           initial={{ opacity: 0 }}
-           animate={{ opacity: 1 }}
-           transition={{ duration: 1, delay: 1 }}
-           className="w-px h-24 bg-gradient-to-b from-gold to-transparent mt-8"
+           initial={{ opacity: 0, height: 0 }}
+           animate={{ opacity: 1, height: 96 }}
+           transition={{ duration: 1.5, delay: 1.2, ease: "easeInOut" }}
+           className="w-px bg-gradient-to-b from-gold to-transparent mt-8"
         />
       </div>
     </section>

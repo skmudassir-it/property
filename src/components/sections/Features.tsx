@@ -45,10 +45,11 @@ export function Features() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8, delay: i * 0.15 }}
-              className="flex flex-col"
+              whileHover={{ y: -10 }}
+              className="flex flex-col group cursor-pointer"
             >
-              <span className="text-gold tracking-[0.2em] text-xs uppercase mb-3">{feature.label}</span>
-              <span className="font-serif text-3xl md:text-4xl text-white">{feature.value}</span>
+              <span className="text-gold tracking-[0.2em] text-xs uppercase mb-3 group-hover:text-white transition-colors duration-500">{feature.label}</span>
+              <span className="font-serif text-3xl md:text-4xl text-white group-hover:text-gold transition-colors duration-500">{feature.value}</span>
             </motion.div>
           ))}
         </div>
