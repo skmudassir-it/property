@@ -2,7 +2,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Button } from '@/components/ui/button';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion, AnimatePresence, useScroll } from 'framer-motion';
 import { useState, useEffect } from 'react';
 
 export function Navbar() {
@@ -15,6 +15,8 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  const { scrollYProgress } = useScroll();
 
   const navLinks = [
     { name: 'The Property', href: '#property' },
@@ -78,6 +80,12 @@ export function Navbar() {
           </Button>
         </motion.div>
       </div>
+
+      {/* Gold Scroll Progress Light */}
+      <motion.div 
+        className="absolute bottom-0 left-0 right-0 h-[2px] md:h-[1px] bg-gold origin-left shadow-[0_0_15px_rgba(212,175,55,1)]"
+        style={{ scaleX: scrollYProgress }}
+      />
     </motion.header>
   );
 }
